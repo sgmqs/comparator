@@ -1,2 +1,4 @@
 # comparator
-Compares two images for similarity, then displays how much % they are similar.
+Compares two images(or any other file type.) for similarity, then displays how much % they are similar.
+The site displays both images along with %.
+Still in development.

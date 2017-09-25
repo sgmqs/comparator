@@ -1,13 +1,12 @@
 <?php
 
-$res="100%";
-file_put_contents("1.txt",trim(chunk_split(base64_encode(file_get_contents("{$_GET['a']}")),1," ")));
-file_put_contents("1.jpg",base64_decode(file_get_contents("1.txt")));
+@file_put_contents("1.txt",trim(chunk_split(base64_encode(file_get_contents("{$_GET['a']}")),1," ")));
+@file_put_contents("1.jpg",base64_decode(file_get_contents("1.txt")));
 /**************************************************************************/
-file_put_contents("2.txt",trim(chunk_split(base64_encode(file_get_contents("{$_GET['b']}")),1," ")));
-file_put_contents("2.jpg",base64_decode(file_get_contents("2.txt")));
-
-
+@file_put_contents("2.txt",trim(chunk_split(base64_encode(file_get_contents("{$_GET['b']}")),1," ")));
+@file_put_contents("2.jpg",base64_decode(file_get_contents("2.txt")));
+/**************************************************************************/
+@similar_text(file_get_contents("1.txt"),file_get_contents("2.txt"),$percent);
 
 ?>
 <!doctype html>
@@ -77,6 +76,16 @@ file_put_contents("2.jpg",base64_decode(file_get_contents("2.txt")));
 				width:298px;
 				height:35px;
 			}
+			textarea {
+				width: 645px;
+				height: 400px;
+				position:relative;
+				top:-591px;
+				resize:none;
+			}
+			#esketit {
+				right:-292px;
+			}
 		</style>
 		</head>
 	<body>
@@ -86,7 +95,7 @@ file_put_contents("2.jpg",base64_decode(file_get_contents("2.txt")));
 			<div id="img_1">
 				<img src="1.jpg">
 			</div>
-			<div id="result"><?php echo $res; ?></div>
+			<div id="result"><?php echo $percent; ?>%</div>
 			<div id="img_2">
 				<img src="2.jpg">
 			</div>
@@ -95,6 +104,8 @@ file_put_contents("2.jpg",base64_decode(file_get_contents("2.txt")));
 				<input type="text" name="b" placeholder="link to second image"><br>
 				<input type="submit" value="LEGO">
 			</form>
+			<textarea  readonly><?php echo file_get_contents("1.txt"); ?></textarea>
+			<textarea id="esketit" readonly><?php echo file_get_contents("2.txt"); ?></textarea>
 		</div>
 	</body>
 </html>
